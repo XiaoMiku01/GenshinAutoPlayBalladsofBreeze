@@ -5,7 +5,6 @@ import cv2
 import pyautogui as pg
 from merge import manyimgs
 
-
 hwnd_title = dict()
 
 # 均值哈希算法
@@ -64,33 +63,31 @@ while 1:
     img.save("screenshot1.jpg")
     # print('ok')
     img1 = cv2.imread("screenshot1.jpg")
-    # w,a,s,d= img1[340:490, 340:490],img1[470:620,200:350],img1[610:760,330:480],img1[470:620,470:620]
-    # i,j,k,l=img1[340:490,1120:1270],img1[470:620,980:1130],img1[610:760,1120:1270],img1[470:620,1250:1340]
-    w,a,s,d= img1[340:470, 340:470],img1[470:610,200:335],img1[610:750,330:470],img1[470:610,470:610]
-    i,j,k,l=img1[340:470,1120:1270],img1[470:610,985:1125],img1[610:750,1125:1265],img1[470:610,1260:1410]
+    w,a,s,d= img1[332:468, 338:474],img1[472:608,198:334],img1[612:748,338:474],img1[472:608,470:610]
+    i,j,k,l=img1[332:468,1128:1264],img1[472:608,985:1125],img1[612:748,1128:1264],img1[472:608,1270:1406]
     imgs = manyimgs(1, ([w,a,s,d],[i,j,k,l]))
     # 展示多个
     cv2.imshow("mutil_pic", imgs)
-    m=11
+    m=15
     if cmpHash(hash1,aHash(w))<m:
         pg.press("w")
         print('w')
     if cmpHash(hash1,aHash(s))<m:
         pg.press("s")
         print('s')
-    if cmpHash(hash1,aHash(a))<12:
+    if cmpHash(hash1,aHash(a))<m:
         pg.press("a")
         print('a')
-    if cmpHash(hash1,aHash(d))<10:
+    if cmpHash(hash1,aHash(d))<m:
         pg.press("d")
         print('d')
-    if cmpHash(hash1,aHash(i))<12:
+    if cmpHash(hash1,aHash(i))<m:
         pg.press("i")
         print('i')
-    if cmpHash(hash1,aHash(j))<12:
+    if cmpHash(hash1,aHash(j))<m:
         pg.press("j")
         print('j')
-    if cmpHash(hash1,aHash(k))<12:
+    if cmpHash(hash1,aHash(k))<m:
         pg.press("k")
         print('k')
     if cmpHash(hash1,aHash(l))<m:
