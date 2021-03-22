@@ -4,7 +4,8 @@ import sys
 import cv2
 import pyautogui as pg
 from merge import manyimgs
-
+import  numpy as np
+import time
 hwnd_title = dict()
 
 # 均值哈希算法
@@ -59,40 +60,43 @@ imgB = cv2.imread('B.png')
 hash1 = aHash(imgB)
 while 1:
     screen = QApplication.primaryScreen()
-    img = screen.grabWindow(hwnd).toImage()
-    img.save("screenshot1.jpg")
-    # print('ok')
-    img1 = cv2.imread("screenshot1.jpg")
+    abc = screen.grabWindow(hwnd).toImage()
+    # img.save("screenshot1.jpg")
+    # # print('ok')
+    # img1 = cv2.imread("screenshot1.jpg")
+    s = abc.bits().asstring(abc.width() * abc.height() * abc.depth() // 8)
+    img1 = np.frombuffer(s, dtype=np.uint8).reshape((abc.height(), abc.width(), abc.depth() // 8))
     w,a,s,d= img1[332:468, 338:474],img1[472:608,198:334],img1[612:748,338:474],img1[472:608,470:610]
     i,j,k,l=img1[332:468,1128:1264],img1[472:608,985:1125],img1[612:748,1128:1264],img1[472:608,1270:1406]
-    imgs = manyimgs(1, ([w,a,s,d],[i,j,k,l]))
+    imgs = manyimgs(1, ([w,a],[s,d],[i,j],[k,l]))
     # 展示多个
     cv2.imshow("mutil_pic", imgs)
-    m=15
+    m=17
     if cmpHash(hash1,aHash(w))<m:
         pg.press("w")
-        print('w')
+        print('w',cmpHash(hash1,aHash(w)))
     if cmpHash(hash1,aHash(s))<m:
         pg.press("s")
-        print('s')
+        print('s',cmpHash(hash1,aHash(s)))
     if cmpHash(hash1,aHash(a))<m:
         pg.press("a")
-        print('a')
+        print('a',cmpHash(hash1,aHash(a)))
     if cmpHash(hash1,aHash(d))<m:
         pg.press("d")
-        print('d')
+        print('d',cmpHash(hash1,aHash(d)))
     if cmpHash(hash1,aHash(i))<m:
         pg.press("i")
-        print('i')
+        print('i',cmpHash(hash1,aHash(i)))
     if cmpHash(hash1,aHash(j))<m:
         pg.press("j")
-        print('j')
+        print('j',cmpHash(hash1,aHash(j)))
     if cmpHash(hash1,aHash(k))<m:
         pg.press("k")
-        print('k')
+        print('k',cmpHash(hash1,aHash(k)))
     if cmpHash(hash1,aHash(l))<m:
         pg.press("l")
-        print('l')
+        print('l',cmpHash(hash1,aHash(l)))
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
+    time.sleep(0.05)
 cv2.destroyAllWindows()
