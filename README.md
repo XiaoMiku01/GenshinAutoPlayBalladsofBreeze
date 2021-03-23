@@ -31,7 +31,7 @@ python3 -m pip install win32gui
 
 3.龙脊雪山的山洞或者去环境较暗的地方，面壁思过去弹，因为比较暗，识别更加准确。
 
-4.运行 main.py。（没有python环境或第三方库就运行exe文件）
+4.运行 main.py。（没有python环境或第三方库就运行exe文件，windows下请右击已管理员权限运行！！）
 ```shell
 python3 main.py
 ```
