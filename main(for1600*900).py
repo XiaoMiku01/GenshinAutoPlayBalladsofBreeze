@@ -56,7 +56,7 @@ for h, t in hwnd_title.items():
         break
 
 app = QApplication(sys.argv)
-imgB = cv2.imread('B.png')
+imgB = cv2.imread('./image/B.png')
 hash1 = aHash(imgB)
 while 1:
     screen = QApplication.primaryScreen()
